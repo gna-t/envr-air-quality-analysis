@@ -53,12 +53,20 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig("pm25_over_time.png")
 
-plt.figure(figsize=(10, 5))
-plt.bar(monthly_avg["Month"], monthly_avg["PM2.5"], color="green")
+plt.figure(figsize=(12, 5))
+positions = range(len(monthly_avg))
+tick_step = 3
+
+plt.bar(positions, monthly_avg["PM2.5"], color="green")
 plt.title("Monthly Average PM2.5")
 plt.xlabel("Month")
 plt.ylabel("Average PM2.5")
-plt.xticks(rotation=45)
+plt.xticks(
+    positions[::tick_step],
+    monthly_avg["Month"][::tick_step],
+    rotation=45,
+    ha="right"
+)
 plt.tight_layout()
 plt.savefig("monthly_avg_pm25.png")
 
